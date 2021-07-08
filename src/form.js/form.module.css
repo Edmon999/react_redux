@@ -1,0 +1,15 @@
+.form{
+  width: 30vw;
+  margin: auto;
+  margin-top: 10px;
+ }
+ .warning{
+     color: rgb(145, 22, 22);
+     font-size: 10px;
+     margin: 5px;
+ }
+ .ok{
+     display: none;
+     color: saddlebrown;
+ }
+
