@@ -2,6 +2,7 @@ import { Component } from "react";
 import styles from "./form.module.css";
 import { Form, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { Link, withRouter } from "react-router-dom";
 class MyForm extends Component {
   constructor() {
     super();
@@ -23,45 +24,73 @@ class MyForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     if (!this.checkPassword(this.state.password)) {
-        this.setState({
-            hideWarning: false,
-        })
-    }else{
-        this.setState({
-            hideWarning: true,
-        })
-    } 
-    if(!this.checkEmail(this.state.email)){
-        this.setState({
-            emailValid: false,
-        })
-    }else{
-        this.setState({
-            emailValid: true,
-        })
+      this.setState({
+        hideWarning: false,
+      });
+    } else {
+      this.setState({
+        hideWarning: true,
+      });
     }
-    if(this.state.name === ""){
-        this.setState({
-            checkName: false
-        })
-    }else{
-        this.setState({
-            checkName: true,
-        })
+    if (!this.checkEmail(this.state.email)) {
+      this.setState({
+        emailValid: false,
+      });
+    } else {
+      this.setState({
+        emailValid: true,
+      });
     }
-     if(this.checkPassword(this.state.password) && this.checkEmail(this.state.email) && this.state.name !== ""){
-       this.setState({
+    if (this.state.name === "") {
+      this.setState({
+        checkName: false,
+      });
+    } else {
+      this.setState({
+        checkName: true,
+      });
+    }
+    if (
+      this.checkPassword(this.state.password) &&
+      this.checkEmail(this.state.email) &&
+      this.state.name !== ""
+    ) {
+      const userObj = {
+        name: this.state.name,
+        password: this.state.password,
+        email: this.state.email,
+      };
+      this.setState({
         name: "",
         email: "",
         password: "",
         hideWarning: true,
         emailValid: true,
       });
-      console.log(this.state);
+      fetch(`http://localhost:3004/users?email=${this.state.email}`)
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          if (data.length === 0) {
+            fetch("http://localhost:3004/users", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json;charset=utf-8",
+              },
+              body: JSON.stringify(userObj),
+            }).then((res) => {
+              this.props.history.push("/Login");
+            });
+          }else{
+            alert("this email already used")
+          }
+        });
     }
   };
-  checkEmail(email){
-    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  checkEmail(email) {
+    const re =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
   }
   checkPassword(str) {
@@ -81,8 +110,8 @@ class MyForm extends Component {
               value={this.state.name}
               name="name"
             />
-            <p className={this.state.checkName  ? styles.ok : styles.warning}>
-                    name can't be blank
+            <p className={this.state.checkName ? styles.ok : styles.warning}>
+              name can't be blank
             </p>
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -94,8 +123,8 @@ class MyForm extends Component {
               value={this.state.email}
               name="email"
             />
-             <p className={this.state.emailValid ? styles.ok : styles.warning}>
-                 please fill in a valid e-mail address
+            <p className={this.state.emailValid ? styles.ok : styles.warning}>
+              please fill in a valid e-mail address
             </p>
             <Form.Text className="text-muted">
               We'll never share your email with anyone else.
@@ -119,9 +148,14 @@ class MyForm extends Component {
             Submit
           </Button>
         </Form>
+        <div>
+          If you have account, you can <Link to="/Login">Sign in </Link> Now.
+          Ara! <br />
+          <Link to="/"> Go home page </Link>
+        </div>
       </div>
     );
   }
 }
 
-export default MyForm;
+export default withRouter(MyForm);

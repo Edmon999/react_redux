@@ -1,0 +1,27 @@
+.card{
+    width: 30vw;
+    height: 45vh;
+    background-color: rgb(63, 190, 174);
+    margin: 10px;
+    padding: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+}
+.card img{
+    width: 22vw;
+    height: 27vh;
+}
+.flex{
+    display: flex;
+    flex-wrap: wrap;
+}
+h1{
+    text-align: center;
+    font-size: 32px;
+    color: rgb(0, 0, 0);
+    font-family: sans-serif;
+}
+
+.name{
+    text-align: center;
+}
