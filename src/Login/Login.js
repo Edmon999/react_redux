@@ -1,7 +1,7 @@
 import { Component } from "react";
 import styles from "./Login.module.css"
 import { Link ,withRouter} from 'react-router-dom'
-import User from '../User/User'
+import request  from "../Helper.js/request";
  class Login extends  Component{
     state = {
         email: "",
@@ -14,19 +14,20 @@ import User from '../User/User'
        })
    }
    handleSubmit = (e) => {
+       const {email,password} = this.state
        e.preventDefault();
-       fetch(`http://localhost:3004/users?email=${this.state.email}`)
-       .then((res) => {
-           return res.json()
-       })
-       .then((data) => {
-            if(data.length > 0 && data[0].password === this.state.password){
-                this.props.userName(data[0].name)
-               this.props.history.push('/user')
-           }else{
-               alert("email or password is incorrect")
-           }
-       })
+      request(`/users`,{
+       query: {
+           email,
+       }
+      }).then((user) => {
+        if(user.length > 0 && user[0].password === password){
+            localStorage.setItem('id',user[0].id)
+            this.props.history.push('/user')
+        }else{
+            alert("email or password is incorrect")
+        }
+    })
    }
     render(){
          return(

@@ -1,19 +1,11 @@
 import { Component } from "react";
 import MyForm from "./form.js/form";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route,} from "react-router-dom";
 import Login from './Login/Login'
 import Home  from "./Home/Home";
 import User from './User/User' 
-import Store from './Store'
+import PrivateRoute from "./Helper.js/PrivateRoute";
 class App extends Component {
-  state = {
-    name: ""
-  }
-  getUserName = (name) => {
-     this.setState({
-       name,
-     })
-  }
   render() {
     return (
         <>
@@ -24,19 +16,18 @@ class App extends Component {
                 <Home />   
               </Route>
               <Route exact path="/Login">
-                <Login userName={this.getUserName}/>   
+                <Login />   
               </Route>
               <Route exact path="/SignUp">
                 <MyForm />
               </Route>
-              <Route exact path="/user">
-                <User name={this.state.name}/>
-              </Route>
+              <PrivateRoute exact path="/user">
+                <User />
+              </PrivateRoute>
             </Switch>
         </Router>
       </div>
-      {/* <Store /> */}
-       </>
+        </>
     );
   }
 }

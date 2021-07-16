@@ -1,8 +1,13 @@
 import { Component } from "react";
-import styles from "./form.module.css";
 import { Form, Button } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
 import { Link, withRouter } from "react-router-dom";
+
+import styles from "./form.module.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+
+import { checkPassword,checkEmail} from "../Helper.js/Validation";
+import request from '../Helper.js/request'
+
 class MyForm extends Component {
   constructor() {
     super();
@@ -15,50 +20,28 @@ class MyForm extends Component {
       checkName: true,
     };
   }
+
   handleChange = (e) => {
     const { name, value } = e.target;
     this.setState({
       [name]: value,
     });
   };
+
   handleSubmit = (e) => {
+    const {email,password} = this.state
     e.preventDefault();
-    if (!this.checkPassword(this.state.password)) {
-      this.setState({
-        hideWarning: false,
-      });
-    } else {
-      this.setState({
-        hideWarning: true,
-      });
-    }
-    if (!this.checkEmail(this.state.email)) {
-      this.setState({
-        emailValid: false,
-      });
-    } else {
-      this.setState({
-        emailValid: true,
-      });
-    }
-    if (this.state.name === "") {
-      this.setState({
-        checkName: false,
-      });
-    } else {
-      this.setState({
-        checkName: true,
-      });
-    }
+    const validPas = checkPassword(password);
+    const validEmail = checkEmail(email);
     if (
-      this.checkPassword(this.state.password) &&
-      this.checkEmail(this.state.email) &&
+      validPas &&
+      validEmail &&
       this.state.name !== ""
     ) {
       const userObj = {
         name: this.state.name,
-        password: this.state.password,
-        email: this.state.email,
+        password,
+        email,
       };
       this.setState({
         name: "",
@@ -67,36 +50,32 @@ class MyForm extends Component {
         hideWarning: true,
         emailValid: true,
       });
-      fetch(`http://localhost:3004/users?email=${this.state.email}`)
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          if (data.length === 0) {
-            fetch("http://localhost:3004/users", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json;charset=utf-8",
-              },
-              body: JSON.stringify(userObj),
-            }).then((res) => {
-              this.props.history.push("/Login");
-            });
-          }else{
-            alert("this email already used")
-          }
-        });
-    }
+      request(`/users`,{
+          query: {
+              email,
+            }})
+      .then((data) => {
+        if(data.length === 0){
+          request('/users',{
+            method:"POST",
+            body: userObj,
+          })
+          .then((res) => {
+            console.log(res)
+            console.log(this.props)
+             this.props.history.push("/Login");
+          })
+        }
+      });
+     } else {
+      this.setState({
+        hideWarning: validPas,
+        checkName: this.state.name,
+        emailValid: validEmail
+      });
+     }
   };
-  checkEmail(email) {
-    const re =
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
-  }
-  checkPassword(str) {
-    var re = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
-    return re.test(str);
-  }
+  
   render() {
     return (
       <div className={styles.form}>
