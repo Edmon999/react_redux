@@ -1,6 +1,6 @@
 const main_url='http://localhost:3004'
 
-function request(url,options){
+function request(url,options="GET"){
     const config = {
         method: options.method || "GET",
         headers: {

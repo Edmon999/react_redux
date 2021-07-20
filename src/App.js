@@ -1,10 +1,16 @@
 import { Component } from "react";
-import MyForm from "./form.js/form";
 import { BrowserRouter as Router, Switch, Route,} from "react-router-dom";
+
+import PrivateRoute from "./Helper.js/PrivateRoute";
+
 import Login from './Login/Login'
 import Home  from "./Home/Home";
 import User from './User/User' 
-import PrivateRoute from "./Helper.js/PrivateRoute";
+import UsersPage from "./PageForLogInUsers/UsersPage";
+import MyForm from "./form.js/form";
+import UserProfile from "./UserProfile/UserProfile";
+import LoginHook from "./Login/LoginHook";
+
 class App extends Component {
   render() {
     return (
@@ -24,7 +30,16 @@ class App extends Component {
               <PrivateRoute exact path="/user">
                 <User />
               </PrivateRoute>
+              <PrivateRoute exact path="/userPage">
+                <UsersPage />
+              </PrivateRoute>
+              <PrivateRoute exact path="/userProfile">
+                <UserProfile />
+              </PrivateRoute>
             </Switch>
+            <Route exact path="/LoginHook">
+            <LoginHook />
+              </Route>
         </Router>
       </div>
         </>

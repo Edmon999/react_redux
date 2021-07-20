@@ -1,11 +1,45 @@
 {
   "users": [
     {
-      "first_name": "edmon sargsyan",
-      "last_name": "",
-      "password": "EDmon9900@",
-      "email": "edmon.sargsyan99@mail.ru",
+      "email": "edmon@mail11.com",
+      "password": "aaaaaaa",
+      "first_name": "edmon ",
+      "last_name": "sargsyan",
       "id": 1
+    },
+    {
+      "first_name": "edmon sargsyan",
+      "password": "EDmon9900@",
+      "email": "edmon.55@mail.ru",
+      "id": 2
+    },
+    {
+      "first_name": "rob",
+      "password": "EDmon9900@",
+      "email": "rb@mail.ru",
+      "id": 3
+    },
+    {
+      "first_name": "ed",
+      "password": "EDmon9900@",
+      "email": "e99@mail.ru",
+      "id": 4
+    },
+    {
+      "first_name": "edmon sargsyan",
+      "id": 5
+    },
+    {
+      "email": "edmon.sarg9@mail.ru",
+      "password": "EDmon00@",
+      "first_name": "robert tashchyan",
+      "id": 6
+    },
+    {
+      "email": "edmon.sargsyan99@mail.ru",
+      "password": "EDmon99",
+      "first_name": "edmon sargsyan",
+      "id": 7
     }
   ],
   "posts": [

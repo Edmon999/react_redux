@@ -7,13 +7,10 @@ class Home extends Component {
         home page
           <ul>
                <li>
-                <Link to="/Login">LogIn</Link>
+                <Link to="/loginHook">LogIn</Link>
               </li>
               <li>
                 <Link to="/SignUp">Sign Up</Link>
-              </li>
-              <li>
-                <Link to="/user">Users</Link>
               </li>
           </ul>
       </div>

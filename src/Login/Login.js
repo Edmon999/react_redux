@@ -1,7 +1,9 @@
 import { Component } from "react";
-import styles from "./Login.module.css"
 import { Link ,withRouter} from 'react-router-dom'
+ 
+import styles from "./Login.module.css"
 import request  from "../Helper.js/request";
+ 
  class Login extends  Component{
     state = {
         email: "",
@@ -23,14 +25,14 @@ import request  from "../Helper.js/request";
       }).then((user) => {
         if(user.length > 0 && user[0].password === password){
             localStorage.setItem('id',user[0].id)
-            this.props.history.push('/user')
+             this.props.history.push('/userPage')
         }else{
             alert("email or password is incorrect")
         }
     })
    }
     render(){
-         return(
+          return(
             <div className={styles.form}>
                 <form onSubmit={this.handleSubmit}>
                     <label>
@@ -54,4 +56,6 @@ import request  from "../Helper.js/request";
         )
     }
 }
-export default withRouter(Login)
+ 
+
+export default   (withRouter(Login))

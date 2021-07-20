@@ -39,7 +39,7 @@ class MyForm extends Component {
       this.state.name !== ""
     ) {
       const userObj = {
-        name: this.state.name,
+        first_name: this.state.name,
         password,
         email,
       };
