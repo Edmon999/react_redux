@@ -5,8 +5,7 @@ import { connect } from "react-redux";
 import styles from "./User.module.css";
 
 import {getUsers} from '../Store//action'
-import store from "../Store/store";
-class User extends Component {
+ class User extends Component {
   state = {
     name: "",
    };
@@ -19,12 +18,13 @@ class User extends Component {
         name: user.first_name
       })
     })
-    fetch('http://localhost:3004/users')
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data)
-       this.props.getUsers(data)
-    })
+    // fetch('http://localhost:3004/users')
+    // .then((res) => res.json())
+    // .then((data) => {
+    //   console.log(data)
+    //    this.props.getUsers(data)
+    // })
+    this.props.getUsers()
   }
   handleClick = () => {
     localStorage.removeItem("id");

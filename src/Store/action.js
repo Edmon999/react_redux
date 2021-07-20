@@ -1,20 +1,25 @@
-export function getUsers(usersData){
-  return  {
-      type: "getUsers",
-      payload: usersData
-  }
-}
+import request from "../Helper.js/request";
 
-export function getUserInfo(data){
-    return {
-        type: "userInfo",
-        payload: data
+export function getUsers() {
+    return (dispatch) => {
+        request(`/users`)
+        .then((users) => {
+             dispatch({
+                type: "getUsers",
+                payload: users
+            })
+        })
     }
+ 
 }
 
-// export function editInfo(editedData){
-//     return {
-//         type: "editInfo",
-//         payload: editedData
-//     }
-// }
+export function getUserInfo(id) {
+  return (dispatch) => {
+    request(`/users/${id}`).then((userInfo) => {
+      dispatch({
+        type: "userInfo",
+        payload: userInfo,
+      });
+    });
+  };
+}

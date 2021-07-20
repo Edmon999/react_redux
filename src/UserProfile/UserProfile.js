@@ -10,11 +10,7 @@ class UserProfile extends Component{
  
 componentDidMount(){
     const id = localStorage.getItem('id')
-     request(`/users/${id}`)
-     .then((userInfo) => {
-         console.log(userInfo)
-         this.props.getUserInfo(userInfo)
-     })
+    this.props.getUserInfo(id)
     
 }
     render(){
