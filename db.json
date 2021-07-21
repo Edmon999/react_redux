@@ -36,10 +36,26 @@
       "id": 6
     },
     {
-      "email": "edmon.sargsyan99@mail.ru",
-      "password": "EDmon9900",
+      "email": "edmon.sargsyan99@0mail.ru",
+      "password": "EDmon990015",
       "first_name": "edmon sargsyan",
       "id": 7
+    },
+    {
+      "first_name": "ed",
+      "password": "EDmon9900@",
+      "email": "e@mail.ru",
+      "id": 8
+    },
+    {
+      "first_name": "ed",
+      "id": 9
+    },
+    {
+      "first_name": "a",
+      "password": "EDmon9900@",
+      "email": "a@mail.ru",
+      "id": 10
     }
   ],
   "posts": [

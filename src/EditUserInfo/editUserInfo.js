@@ -1,37 +1,34 @@
-import { Component } from "react";
-import { connect } from "react-redux";
-import {withRouter} from "react-router-dom";
+import { useState,useEffect } from "react";
+import { useDispatch,useSelector } from "react-redux";
+import { useHistory } from "react-router";
 
 import request from "../Helper.js/request";
 import { getUserInfo } from "../Store/action";
-class EditUserInfo extends Component {
-   state = {
-     email: this.props.userInfo.email || "",
-     password: this.props.userInfo.password ||"" 
-   }
-    componentDidUpdate(prevProps){
-        if(!prevProps.userInfo.email && this.props.userInfo.email){
-        console.log(prevProps.userInfo.email, this.props.userInfo.email)
-            this.setState({
-                email: this.props.userInfo.email,
-                password: this.props.userInfo.password
-            })
-        }
-    }
 
-  handleChange = (e) => {
+export default function EditUserInfo(){
+
+  const {userInfo} = useSelector((state) => state.profile)
+  const dispatch = useDispatch()
+  const history = useHistory()
+
+   const [inputField,setInputField] = useState({
+     email: userInfo.email,
+     password: userInfo.password 
+   })
+  const handleChange = (e) => {
       const {name,value} = e.target
-      this.setState({
-          [name]: value
+      setInputField({
+        ...inputField,
+        [name]: value
       })
   };
-  editUserInfo = () => {
+  const editUserInfo = () => {
       const id = localStorage.getItem('id')
       const editUserInfo = {
-        email: this.state.email,
-        password: this.state.password,
-        first_name: this.props.userInfo.first_name,
-        last_name: this.props.userInfo.last_name
+        email: inputField.email || userInfo.email,
+        password: inputField.password || userInfo.password,
+        first_name: userInfo.first_name,
+        last_name:  userInfo.last_name
       }
      request(`/users/${id}`,{
       method: "PUT",
@@ -39,13 +36,10 @@ class EditUserInfo extends Component {
     })
     .then((response) => {
       console.log(response)
-      this.props.getUserInfo(response)
-      this.props.history.push('/userPage')
+       dispatch(getUserInfo(response.id))
+       history.push('/userPage')
     })
   }
-  render() {
-    const { userInfo } = this.props;
-    console.log(this.state)
      return (
       <div>
         <label>
@@ -60,8 +54,8 @@ class EditUserInfo extends Component {
           email
           <input
             type="text"
-            value={this.state.email || ""}
-            onChange={this.handleChange}
+            defaultValue={inputField.email || userInfo.email}
+            onChange={(e) => handleChange(e)}
             name="email"
           />
         </label>
@@ -69,23 +63,12 @@ class EditUserInfo extends Component {
           password
           <input
             type="text"
-            value={this.state.password || ""}
-            onChange={this.handleChange}
+            defaultValue={inputField.password || userInfo.password}
+            onChange={(e) => handleChange(e)}
             name="password"
           />
         </label>
-         <button onClick={this.editUserInfo}>Edit Info</button>
+         <button onClick={(e) => editUserInfo(e)}>Edit Info</button>
       </div>
     );
-  }
 }
-
-const mapStateToProps = (state) => {
-  return {
-    userInfo: state.profile.userInfo,
-  };
-};
-const mapDispatchToProps = {
-  getUserInfo,
-}
-export default connect(mapStateToProps,mapDispatchToProps)(withRouter(EditUserInfo));

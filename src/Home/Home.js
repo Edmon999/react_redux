@@ -1,7 +1,5 @@
-import { Component } from "react";
-import { Link } from "react-router-dom";
-class Home extends Component {
-  render() {
+ import { Link } from "react-router-dom";
+function Home () {
     return (
       <div>
         home page
@@ -15,6 +13,5 @@ class Home extends Component {
           </ul>
       </div>
     );
-  }
 }
 export default Home;

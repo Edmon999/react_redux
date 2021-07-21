@@ -1,4 +1,3 @@
-import { Component } from "react";
 import { BrowserRouter as Router, Switch, Route,} from "react-router-dom";
 
 import PrivateRoute from "./Helper.js/PrivateRoute";
@@ -11,8 +10,7 @@ import MyForm from "./form.js/form";
 import UserProfile from "./UserProfile/UserProfile";
 import LoginHook from "./Login/LoginHook";
 
-class App extends Component {
-  render() {
+function App(){
     return (
         <>
       <div>
@@ -44,7 +42,6 @@ class App extends Component {
       </div>
         </>
     );
-  }
 }
 
 export default App;
