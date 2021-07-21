@@ -15,7 +15,8 @@ export function getUsers() {
 
 export function getUserInfo(id) {
   return (dispatch) => {
-    request(`/users/${id}`).then((userInfo) => {
+    request(`/users/${id}`)
+    .then((userInfo) => {
       dispatch({
         type: "userInfo",
         payload: userInfo,
