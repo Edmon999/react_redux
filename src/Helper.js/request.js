@@ -2,7 +2,7 @@ const main_url='http://localhost:3004'
 
 function request(url,options="GET"){
     const config = {
-        method: options.method || "GET",
+        method: options.method,
         headers: {
             "content-type": "application/json"
         }
