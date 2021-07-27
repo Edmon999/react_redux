@@ -1,0 +1,16 @@
+.form{
+    margin-top: 5vh;
+    text-align: center;
+}
+.inputs{
+    margin: 10px;
+}
+
+.errors{
+    color: crimson;
+}
+.select{
+    max-width: 30vw;
+    min-width: 15vw;
+    margin: auto;
+}
