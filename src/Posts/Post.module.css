@@ -1,0 +1,14 @@
+.cards{
+    display: flex;
+    flex-wrap: wrap;
+}
+.post{
+    font-size: 28px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+.btn Button{
+    margin: 5px;
+}
