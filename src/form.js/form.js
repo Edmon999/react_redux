@@ -132,7 +132,7 @@ function MyForm() {
         </Button>
       </Form>
       <div>
-        If you have account, you can <Link to="/LoginHook">Sign in </Link> Now. Ara!{" "}
+        If you have account, you can <Link to="/Login">Sign in </Link> Now. Ara!{" "}
         <br />
         <Link to="/"> Go home page </Link>
       </div>
