@@ -56,23 +56,40 @@
       "password": "EDmon9900@",
       "email": "a@mail.ru",
       "id": 10
+    },
+    {
+      "email": "edmon.sargsyan99@mail.ru",
+      "password": "EDmon9900@",
+      "first_name": "ed",
+      "id": 11
+    },
+    {
+      "first_name": "edmon sargsyan",
+      "password": "EDmon9900@",
+      "email": "hovo.karapetayn2001@mail.ru",
+      "id": 12
     }
   ],
   "posts": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
+      "title": "exam",
+      "description": "tommorow  we are going to pass exam .\nand then",
+      "email": "r.bna@bk.com",
+      "post": "aeaennnnnnnnnnnnnnnnnnc",
+      "private": "",
+      "date": "8/19/2021",
+      "postCreatorId": 8,
+      "id": 1
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "title": "aaaaaaaa",
+      "description": "tommorow at nigh ",
+      "email": "r.bna@bk.com",
+      "post": "bbbbbbbbbbbbbbbbbb",
+      "private": "",
+      "date": "7/28/2021",
+      "postCreatorId": 11,
+      "id": 2
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }

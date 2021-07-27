@@ -1,9 +1,15 @@
 .card{
-    border: 2px solid black;
     justify-content: center;
     text-align: center;
     width: 30vw;
     height: 30vh;
     margin: auto;
-    padding: 25px;
+}
+.personInfo{
+    text-align: center;
+    color: rgb(1, 1, 34);
+    font-size: 28px;
+}
+.text span{
+    font-size: 24px;
 }

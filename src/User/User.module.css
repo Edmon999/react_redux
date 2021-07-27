@@ -8,7 +8,7 @@
     flex-wrap: wrap;
 }
 .card img{
-    width: 22vw;
+    width: 15vw;
     height: 27vh;
 }
 .flex{
@@ -23,5 +23,11 @@ h1{
 }
 
 .name{
+    text-align: center;
+    font-size: 24px;
+}
+
+.buttonchik {
+    margin: auto;
     text-align: center;
 }

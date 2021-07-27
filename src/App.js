@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Switch, Route,} from "react-router-dom";
-
 import PrivateRoute from "./Helper.js/PrivateRoute";
 
 import Login from './Login/Login'
@@ -9,7 +8,8 @@ import UsersPage from "./PageForLogInUsers/UsersPage";
 import MyForm from "./form.js/form";
 import UserProfile from "./UserProfile/UserProfile";
 import LoginHook from "./Login/LoginHook";
-
+import AddPost from "./AddPost/AddPost";
+import Post from "./Posts/Post";
 function App(){
     return (
         <>
@@ -18,9 +18,6 @@ function App(){
             <Switch>
             <Route exact path="/">
                 <Home />   
-              </Route>
-              <Route exact path="/Login">
-                <Login />   
               </Route>
               <Route exact path="/SignUp">
                 <MyForm />
@@ -34,8 +31,14 @@ function App(){
               <PrivateRoute exact path="/userProfile">
                 <UserProfile />
               </PrivateRoute>
+              <PrivateRoute exact path="/addPost">
+                <AddPost />
+              </PrivateRoute>
+              <PrivateRoute exact path="/posts">
+                <Post />
+              </PrivateRoute>
             </Switch>
-            <Route exact path="/LoginHook">
+            <Route exact path="/Login">
             <LoginHook />
               </Route>
         </Router>

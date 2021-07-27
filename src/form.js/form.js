@@ -82,6 +82,7 @@ function MyForm() {
 
   return (
     <div className={styles.form}>
+      <h1>Sign Up</h1>
       <Form>
         <Form.Group className="mb-3" controlId="formBasicText">
           <Form.Label>Name</Form.Label>
