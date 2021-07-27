@@ -1,0 +1,15 @@
+.divik{
+    background-image: url('http://mdbootstrap.com/img/Photos/Others/images/91.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    min-height: 100vh;
+  }
+  .divik div {
+    text-align: center;
+    justify-content: center;
+    margin: auto;
+  }
+  .divik Button{
+    margin: 10px;
+  }
